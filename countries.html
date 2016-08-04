@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My first JSON</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"> </script>
+    <link rel="stylesheet" href="countries.css">
+</head>
+<body>
+<div id="container">
+    <div class="centered">
+    <input id="countryname" class="myclass" placeholder="Enter the name of any country"></input>
+</div>
+<div class="centered">
+    <input id="capital" class="myclass" placeholder="And get the capitals name"></input>
+</div>
+<div class="centered">
+    <button class="mybutton" id="submit">Submit</button>
+</div>
+</div>
+
+    <script>
+    $('document').ready(function() {
+        $.getJSON('http://localhost/json/countries.json',function(data) {
+            var countryarray = data.countries;
+            var currentcountry;
+            var currentindex;
+            $('#countryname').on("change",function() {
+                currentcountry = $('#countryname').val();
+                for(var i=0; i<countryarray.length;i++){
+                    if(countryarray[i].Country == currentcountry){
+                        currentindex = i;
+                        console.log(currentindex);
+                    }
+                }
+            });
+
+            $('#submit').on("click",function() {
+                $('#capital').val(countryarray[currentindex].Capital_City);
+            });
+        });
+    });
+
+    </script>
+</body>
+</html>
