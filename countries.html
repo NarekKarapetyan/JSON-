@@ -7,6 +7,10 @@
 </head>
 <body>
 <div id="container">
+    <div class="erroremerge">
+    <p>There is no such country</p>
+</div>
+<div id="content">
     <div class="centered">
     <input id="countryname" class="myclass" placeholder="Enter the name of any country"></input>
 </div>
@@ -17,6 +21,7 @@
     <button class="mybutton" id="submit">Submit</button>
 </div>
 </div>
+</div>
 
     <script>
     $('document').ready(function() {
@@ -24,10 +29,13 @@
             var countryarray = data.countries;
             var currentcountry;
             var currentindex;
+            var istheresuchcountry;
             $('#countryname').on("change",function() {
+                istheresuchcountry = false;
                 currentcountry = $('#countryname').val();
                 for(var i=0; i<countryarray.length;i++){
                     if(countryarray[i].Country == currentcountry){
+                        istheresuchcountry = true;
                         currentindex = i;
                         console.log(currentindex);
                     }
@@ -35,7 +43,15 @@
             });
 
             $('#submit').on("click",function() {
+                if(istheresuchcountry == true){
                 $('#capital').val(countryarray[currentindex].Capital_City);
+                $('.erroremerge').css("display", "none");
+                $('#countryname').removeClass('error');
+                }
+                else if (istheresuchcountry == false) {
+                    $('#countryname').addClass('error');
+                    $('.erroremerge').css("display", "inline-block");
+                }
             });
         });
     });
