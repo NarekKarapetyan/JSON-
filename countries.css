@@ -33,3 +33,27 @@ input{
     border-radius: 5px;
     border: 1px solid blue;
 }
+.error{
+    border-color: red;
+}
+.erroremerge{
+    display: none;
+    padding: 0px;
+    margin-top: 165px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+}
+#countryname{
+    margin-top: 0px;
+}
+#content{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 36%;
+}
+p{
+    color: red;
+    font-size: 27px;
+}
